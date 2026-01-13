@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function EventCard({ event }) {
+  console.log("EVENT: ")
+  console.log(event);
   const eventSlug = event?.slug ? encodeURIComponent(event.slug) : null;
   console.log("EVENT SLUG: "+eventSlug)
   // Format date and time from dateTime field
@@ -32,8 +34,8 @@ export default function EventCard({ event }) {
         {/* Event Image */}
         <div className="relative w-full h-48 bg-gray-200">
           <Image
-            /*src={event['image-path'] || '/event-image/dummy.png'}*/
-            src={'/event-image/dummy.png'}
+            src={event['image-path'] || '/event-image/dummy.png'}
+
             alt={event.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"

@@ -13,7 +13,6 @@ export default function CreateEventPage() {
     title: '',
     slug: '',
     description: '',
-    'image-path': '',
     venue: '',
     dateTime: '',
     mode: 'In-person',
@@ -21,6 +20,9 @@ export default function CreateEventPage() {
     organizer: '',
     tags: '',
   });
+
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,12 +32,58 @@ export default function CreateEventPage() {
     }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.match('image/(png|jpeg|jpg)')) {
+        setError('Please select a PNG or JPG image only');
+        return;
+      }
+      
+      setImageFile(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setError('');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
 
     try {
+      // Validate image
+      if (!imageFile) {
+        setError('Please upload an event image');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Upload image to Cloudinary via API route
+      const imageFormData = new FormData();
+      imageFormData.append('file', imageFile);
+      
+      const cloudinaryResponse = await fetch('/api/upload', {
+        method: 'POST',
+        body: imageFormData
+      });
+
+      if (!cloudinaryResponse.ok) {
+        const errorData = await cloudinaryResponse.json();
+        console.error('Cloudinary error:', errorData);
+        throw new Error(errorData.error || 'Failed to upload image to Cloudinary');
+      }
+
+      const imageData = await cloudinaryResponse.json();
+      const imagePath = imageData.secure_url;
+
       // Convert tags string to array
       const tagsArray = formData.tags
         .split(',')
@@ -45,6 +93,7 @@ export default function CreateEventPage() {
       // Prepare event data
       const eventData = {
         ...formData,
+        'image-path': imagePath,
         tags: tagsArray,
         dateTime: new Date(formData.dateTime).toISOString(),
       };
@@ -124,21 +173,30 @@ export default function CreateEventPage() {
               />
             </div>
 
-            {/* Image Path */}
+            {/* Event Image Upload */}
             <div>
-              <label htmlFor="image-path" className="block text-sm font-medium text-gray-700 mb-2">
-                Image Path *
+              <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
+                Event Image (PNG or JPG only) *
               </label>
               <input
-                type="text"
-                id="image-path"
-                name="image-path"
-                value={formData['image-path']}
-                onChange={handleChange}
+                type="file"
+                id="image"
+                name="image"
+                accept="image/png, image/jpeg, image/jpg"
+                onChange={handleImageChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-gray-500"
-                placeholder="e.g., /event-image/dummy.png or URL"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
               />
+              {imagePreview && (
+                <div className="mt-4">
+                  <p className="text-sm text-gray-600 mb-2">Preview:</p>
+                  <img 
+                    src={imagePreview} 
+                    alt="Preview" 
+                    className="w-full max-w-md h-48 object-cover rounded-md border border-gray-300"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Venue */}
