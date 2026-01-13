@@ -29,10 +29,10 @@ export default function EventCard({ event }) {
   }
 
   return (
-    <Link href={`/details/${eventSlug}`} className="block">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <Link href={`/details/${eventSlug}`} className="block group">
+      <div className="bg-slate-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-slate-700 hover:bg-slate-700">
         {/* Event Image */}
-        <div className="relative w-full h-48 bg-gray-200">
+        <div className="relative w-full h-48 bg-slate-700">
           <Image
             src={event['image-path'] || '/event-image/dummy.png'}
 
@@ -46,18 +46,18 @@ export default function EventCard({ event }) {
         {/* Event Details */}
         <div className="p-4 space-y-2">
           {/* Location */}
-          <p className="text-sm text-gray-600">{event.venue}</p>
+          <p className="text-sm text-slate-300">{event.venue}</p>
           
           {/* Title */}
-          <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">
+          <h3 className="text-lg font-semibold text-slate-100 line-clamp-2 transition-colors group-hover:text-blue-400">
             {event.title}
           </h3>
           
           {/* Date */}
-          <p className="text-sm text-gray-700">{formatDate(event.dateTime)}</p>
+          <p className="text-sm text-slate-400">{formatDate(event.dateTime)}</p>
           
           {/* Time */}
-          <p className="text-sm text-gray-700">{formatTime(event.dateTime)}</p>
+          <p className="text-sm text-slate-400">{formatTime(event.dateTime)}</p>
         </div>
       </div>
     </Link>

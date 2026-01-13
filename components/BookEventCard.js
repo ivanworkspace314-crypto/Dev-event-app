@@ -25,32 +25,32 @@ export default function BookEventCard({ eventSlug }) {
   };
 
   return (
-    <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+    <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
       <form onSubmit={handleSubmit} className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900">Book Your Spot</h2>
+        <h2 className="text-2xl font-bold text-slate-100">Book Your Spot</h2>
         
         <div>
-          <p className="text-sm font-medium text-gray-700 mb-2">Email Address</p>
+          <p className="text-sm font-medium text-slate-200 mb-2">Email Address</p>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-slate-400"
           />
         </div>
         
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-medium"
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed transition-colors font-medium"
         >
           {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
 
         {message && (
-          <p className={`text-sm ${message.includes('successful') ? 'text-green-600' : 'text-red-600'}`}>
+          <p className={`text-sm ${message.includes('successful') ? 'text-green-400' : 'text-red-400'}`}>
             {message}
           </p>
         )}
