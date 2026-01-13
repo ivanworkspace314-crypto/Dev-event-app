@@ -1,0 +1,119 @@
+### Variables
+@baseUrl = http://localhost:3000
+@eventSlug = react-advanced-patterns-workshop
+@email = test@example.com
+
+### ============================================
+### GET ALL EVENTS
+### ============================================
+GET {{baseUrl}}/api/events
+
+
+### ============================================
+### CREATE EVENT
+### ============================================
+POST {{baseUrl}}/api/events
+Content-Type: application/json
+
+{
+  "title": "React Advanced Patterns Workshop",
+  "slug": "react-advanced-patterns-workshop",
+  "description": "Learn advanced React patterns including compound components, render props, custom hooks, and state management best practices. This workshop is perfect for intermediate React developers looking to level up their skills.",
+  "image-path": "https://res.cloudinary.com/demo/image/upload/v1234567890/react-workshop.jpg",
+  "venue": "San Francisco Convention Center, Hall A",
+  "dateTime": "2026-02-15T10:00:00Z",
+  "mode": "In-person",
+  "audience": 0,
+  "agenda": "09:00 - Registration\n10:00 - Compound Components\n11:30 - Break\n12:00 - Render Props & Custom Hooks\n13:30 - Lunch\n14:30 - State Management\n16:00 - Q&A & Networking",
+  "organizer": "Tech Learning Academy",
+  "tags": ["React", "JavaScript", "Web Development", "Workshop"]
+}
+
+
+### ============================================
+### CREATE ANOTHER EVENT
+### ============================================
+POST {{baseUrl}}/api/events
+Content-Type: application/json
+
+{
+  "title": "CI/CD Mastery for Modern Web Development",
+  "slug": "nextjs-mastery-production-apps",
+  "description": "Master Next.js from basics to advanced production deployment. Learn App Router, Server Components, API routes, and deployment strategies.",
+  "image-path": "https://res.cloudinary.com/demo/image/upload/v1234567890/nextjs-workshop.jpg",
+  "venue": "New York Tech Hub",
+  "dateTime": "2026-03-01T14:00:00Z",
+  "mode": "In-person",
+  "audience": 0,
+  "agenda": "14:00 - Introduction to Next.js\n15:00 - App Router Deep Dive\n16:30 - Break\n16:45 - Server Components & Actions\n17:45 - Q&A",
+  "organizer": "JavaScript Academy",
+  "tags": ["Next.js", "JavaScript", "Web Development", "Performance"]
+}
+
+
+### ============================================
+### GET SINGLE EVENT BY SLUG
+### ============================================
+GET {{baseUrl}}/api/events/{{eventSlug}}
+
+
+### ============================================
+### GET SINGLE EVENT - NEXTJS
+### ============================================
+GET {{baseUrl}}/api/events/nextjs-mastery-production-apps
+
+
+### ============================================
+### BOOK EVENT
+### ============================================
+POST {{baseUrl}}/api/events/book
+Content-Type: application/json
+
+{
+  "eventSlug": "{{eventSlug}}",
+  "email": "{{email}}"
+}
+
+
+### ============================================
+### BOOK EVENT - ANOTHER USER
+### ============================================
+POST {{baseUrl}}/api/events/book
+Content-Type: application/json
+
+{
+  "eventSlug": "{{eventSlug}}",
+  "email": "another@example.com"
+}
+
+
+### ============================================
+### GET SIMILAR EVENTS BY EVENT SLUG
+### ============================================
+GET {{baseUrl}}/api/events/similar?slug={{eventSlug}}
+
+
+### ============================================
+### GET SIMILAR EVENTS - NEXTJS EVENT
+### ============================================
+GET {{baseUrl}}/api/events/similar?slug=nextjs-mastery-production-apps
+
+
+### ============================================
+### UPDATE EVENT
+### ============================================
+PUT {{baseUrl}}/api/events/{{eventSlug}}
+Content-Type: application/json
+
+{
+  "title": "React Advanced Patterns Workshop - UPDATED",
+  "description": "Updated description for the workshop",
+  "venue": "San Francisco Convention Center, Hall B"
+}
+
+
+### ============================================
+### DELETE EVENT
+### ============================================
+DELETE {{baseUrl}}/api/events/{{eventSlug}}
+
