@@ -110,21 +110,21 @@ export default function CreateEventPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-slate-900 py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-md p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">Create New Event</h1>
+        <div className="bg-slate-800 rounded-lg shadow-md p-8">
+          <h1 className="text-3xl font-bold text-slate-100 mb-6">Create New Event</h1>
 
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-red-600">{error}</p>
+            <div className="mb-6 p-4 bg-red-900 border border-red-700 rounded-md">
+              <p className="text-red-200">{error}</p>
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Title */}
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="title" className="block text-sm font-medium text-slate-200 mb-2">
                 Event Title *
               </label>
               <input
@@ -134,14 +134,14 @@ export default function CreateEventPage() {
                 value={formData.title}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-gray-500"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-slate-400"
                 placeholder="Enter event title"
               />
             </div>
 
             {/* Slug */}
             <div>
-              <label htmlFor="slug" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="slug" className="block text-sm font-medium text-slate-200 mb-2">
                 Slug (URL-friendly identifier) *
               </label>
               <input
@@ -151,14 +151,14 @@ export default function CreateEventPage() {
                 value={formData.slug}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-gray-500"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-slate-400"
                 placeholder="e.g., react-workshop-2024"
               />
             </div>
 
             {/* Description */}
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="description" className="block text-sm font-medium text-slate-200 mb-2">
                 Description *
               </label>
               <textarea
@@ -168,14 +168,14 @@ export default function CreateEventPage() {
                 onChange={handleChange}
                 required
                 rows="4"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-gray-500"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-slate-400"
                 placeholder="Enter event description"
               />
             </div>
 
             {/* Event Image Upload */}
             <div>
-              <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="image" className="block text-sm font-medium text-slate-200 mb-2">
                 Event Image (PNG or JPG only) *
               </label>
               <input
@@ -185,15 +185,15 @@ export default function CreateEventPage() {
                 accept="image/png, image/jpeg, image/jpg"
                 onChange={handleImageChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
               />
               {imagePreview && (
                 <div className="mt-4">
-                  <p className="text-sm text-gray-600 mb-2">Preview:</p>
+                  <p className="text-sm text-slate-400 mb-2">Preview:</p>
                   <img 
                     src={imagePreview} 
                     alt="Preview" 
-                    className="w-full max-w-md h-48 object-cover rounded-md border border-gray-300"
+                    className="w-full max-w-md h-48 object-cover rounded-md border border-slate-600"
                   />
                 </div>
               )}
@@ -201,7 +201,7 @@ export default function CreateEventPage() {
 
             {/* Venue */}
             <div>
-              <label htmlFor="venue" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="venue" className="block text-sm font-medium text-slate-200 mb-2">
                 Venue *
               </label>
               <input
@@ -211,14 +211,14 @@ export default function CreateEventPage() {
                 value={formData.venue}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-gray-500"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-slate-400"
                 placeholder="Enter venue location"
               />
             </div>
 
             {/* Date and Time */}
             <div>
-              <label htmlFor="dateTime" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="dateTime" className="block text-sm font-medium text-slate-200 mb-2">
                 Date and Time *
               </label>
               <input
@@ -228,13 +228,13 @@ export default function CreateEventPage() {
                 value={formData.dateTime}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
               />
             </div>
 
             {/* Mode */}
             <div>
-              <label htmlFor="mode" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="mode" className="block text-sm font-medium text-slate-200 mb-2">
                 Mode *
               </label>
               <select
@@ -243,7 +243,7 @@ export default function CreateEventPage() {
                 value={formData.mode}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
               >
                 <option value="In-person">In-person</option>
                 <option value="Virtual">Virtual</option>
@@ -253,7 +253,7 @@ export default function CreateEventPage() {
 
             {/* Agenda */}
             <div>
-              <label htmlFor="agenda" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="agenda" className="block text-sm font-medium text-slate-200 mb-2">
                 Agenda
               </label>
               <textarea
@@ -262,14 +262,14 @@ export default function CreateEventPage() {
                 value={formData.agenda}
                 onChange={handleChange}
                 rows="4"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-gray-500"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-slate-400"
                 placeholder="Enter event agenda (optional)"
               />
             </div>
 
             {/* Organizer */}
             <div>
-              <label htmlFor="organizer" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="organizer" className="block text-sm font-medium text-slate-200 mb-2">
                 Organizer
               </label>
               <input
@@ -278,14 +278,14 @@ export default function CreateEventPage() {
                 name="organizer"
                 value={formData.organizer}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-gray-500"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-slate-400"
                 placeholder="Enter organizer name (optional)"
               />
             </div>
 
             {/* Tags */}
             <div>
-              <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="tags" className="block text-sm font-medium text-slate-200 mb-2">
                 Tags
               </label>
               <input
@@ -294,7 +294,7 @@ export default function CreateEventPage() {
                 name="tags"
                 value={formData.tags}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-gray-500"
+                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-slate-100 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none placeholder:text-slate-400"
                 placeholder="e.g., JavaScript, React, Web Development (comma-separated)"
               />
             </div>
@@ -304,14 +304,14 @@ export default function CreateEventPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-medium"
+                className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed transition-colors font-medium"
               >
                 {isSubmitting ? 'Creating Event...' : 'Create Event'}
               </button>
               <button
                 type="button"
                 onClick={() => router.push('/admin')}
-                className="px-6 py-3 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors font-medium"
+                className="px-6 py-3 border border-slate-600 rounded-md text-slate-200 hover:bg-slate-700 transition-colors font-medium"
               >
                 Cancel
               </button>

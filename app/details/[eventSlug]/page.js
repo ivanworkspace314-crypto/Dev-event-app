@@ -41,13 +41,13 @@ export default async function EventDetailsPage({ params }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-900">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Title */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">{event.title}</h1>
+        <h1 className="text-4xl font-bold text-slate-100 mb-6">{event.title}</h1>
 
         {/* Description */}
-        <p className="text-lg text-gray-700 mb-6 leading-relaxed">{event.description}</p>
+        <p className="text-lg text-slate-300 mb-6 leading-relaxed">{event.description}</p>
 
         {/* Image */}
         <div className="mb-8">
@@ -65,23 +65,23 @@ export default async function EventDetailsPage({ params }) {
 
         {/* Event Details */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Event Details</h2>
-          <div className="bg-white rounded-lg shadow-md p-6 space-y-3">
+          <h2 className="text-2xl font-bold text-slate-100 mb-4">Event Details</h2>
+          <div className="bg-slate-800 rounded-lg shadow-md p-6 space-y-3">
             <div>
-              <span className="font-semibold text-gray-900">Date: </span>
-              <span className="text-gray-700">{formatDate(event.dateTime)}</span>
+              <span className="font-semibold text-slate-200">Date: </span>
+              <span className="text-slate-400">{formatDate(event.dateTime)}</span>
             </div>
             <div>
-              <span className="font-semibold text-gray-900">Time: </span>
-              <span className="text-gray-700">{formatTime(event.dateTime)}</span>
+              <span className="font-semibold text-slate-200">Time: </span>
+              <span className="text-slate-400">{formatTime(event.dateTime)}</span>
             </div>
             <div>
-              <span className="font-semibold text-gray-900">Venue: </span>
-              <span className="text-gray-700">{event.venue}</span>
+              <span className="font-semibold text-slate-200">Venue: </span>
+              <span className="text-slate-400">{event.venue}</span>
             </div>
             <div>
-              <span className="font-semibold text-gray-900">Mode: </span>
-              <span className="text-gray-700">{event.mode}</span>
+              <span className="font-semibold text-slate-200">Mode: </span>
+              <span className="text-slate-400">{event.mode}</span>
             </div>
           </div>
         </div>
@@ -89,9 +89,9 @@ export default async function EventDetailsPage({ params }) {
         {/* Agenda */}
         {event.agenda && (
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Agenda</h2>
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <p className="text-gray-700 whitespace-pre-line">{event.agenda}</p>
+            <h2 className="text-2xl font-bold text-slate-100 mb-4">Agenda</h2>
+            <div className="bg-slate-800 rounded-lg shadow-md p-6">
+              <p className="text-slate-300 whitespace-pre-line">{event.agenda}</p>
             </div>
           </div>
         )}
@@ -99,9 +99,9 @@ export default async function EventDetailsPage({ params }) {
         {/* About the Organizer */}
         {event.organizer && (
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">About the Organizer</h2>
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <p className="text-gray-700">{event.organizer}</p>
+            <h2 className="text-2xl font-bold text-slate-100 mb-4">About the Organizer</h2>
+            <div className="bg-slate-800 rounded-lg shadow-md p-6">
+              <p className="text-slate-300">{event.organizer}</p>
             </div>
           </div>
         )}
@@ -113,7 +113,7 @@ export default async function EventDetailsPage({ params }) {
               {event.tags.map((tag, index) => (
                 <span 
                   key={index}
-                  className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+                  className="px-4 py-2 bg-blue-900 text-blue-300 rounded-full text-sm font-medium"
                 >
                   {tag}
                 </span>
@@ -125,7 +125,7 @@ export default async function EventDetailsPage({ params }) {
         {/* Similar Events */}
         {similarEvents.length > 0 && (
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Similar Events</h2>
+            <h2 className="text-2xl font-bold text-slate-100 mb-4">Similar Events</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {similarEvents.map((similarEvent) => (
                 <EventCard key={similarEvent._id} event={similarEvent} />
