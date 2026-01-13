@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createEvent } from '@/app/actions';
+import { createEvent, uploadEventImage } from '@/app/actions';
 import TextInput from '@/components/TextInput';
 
 export default function CreateEventPage() {
@@ -67,23 +67,9 @@ export default function CreateEventPage() {
         return;
       }
 
-      // Upload image to Cloudinary via API route
-      const imageFormData = new FormData();
-      imageFormData.append('file', imageFile);
-      
-      const cloudinaryResponse = await fetch('/api/upload', {
-        method: 'POST',
-        body: imageFormData
-      });
-
-      if (!cloudinaryResponse.ok) {
-        const errorData = await cloudinaryResponse.json();
-        console.error('Cloudinary error:', errorData);
-        throw new Error(errorData.error || 'Failed to upload image to Cloudinary');
-      }
-
-      const imageData = await cloudinaryResponse.json();
-      const imagePath = imageData.secure_url;
+      // Upload image to Cloudinary via server action
+      const uploadResult = await uploadEventImage(imageFile);
+      const imagePath = uploadResult.secure_url;
 
       // Convert tags string to array
       const tagsArray = formData.tags

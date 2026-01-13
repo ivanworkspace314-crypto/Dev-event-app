@@ -1,6 +1,8 @@
 import { getAllEvents } from '@/app/actions';
 import Link from 'next/link';
 import DeleteEventButton from '@/components/DeleteEventButton';
+import TableHeaderCell from '@/components/TableHeaderCell';
+import TableCell from '@/components/TableCell';
 
 export default async function AdminDashboard() {
 
@@ -47,50 +49,38 @@ export default async function AdminDashboard() {
             <table className="min-w-full divide-y divide-slate-700">
               <thead className="bg-slate-700">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-200 uppercase tracking-wider">
-                    Event
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-200 uppercase tracking-wider">
-                    Location
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-200 uppercase tracking-wider">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-200 uppercase tracking-wider">
-                    Time
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-200 uppercase tracking-wider">
-                    Booked Spot
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-200 uppercase tracking-wider">
-                    Action
-                  </th>
+                  <TableHeaderCell>Event</TableHeaderCell>
+                  <TableHeaderCell>Location</TableHeaderCell>
+                  <TableHeaderCell>Date</TableHeaderCell>
+                  <TableHeaderCell>Time</TableHeaderCell>
+                  <TableHeaderCell>Booked Spot</TableHeaderCell>
+                  <TableHeaderCell>Action</TableHeaderCell>
                 </tr>
               </thead>
               <tbody className="bg-slate-800 divide-y divide-slate-700">
                 {events.map((event) => (
                   <tr key={event._id} className="hover:bg-slate-700">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <TableCell>
                       <Link href={`/details/${event.slug}`} className="text-sm font-medium text-slate-100 hover:text-blue-400">
                         {event.title}
                       </Link>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-slate-300">{event.venue}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-slate-300">{formatDate(event.dateTime)}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-slate-300">{formatTime(event.dateTime)}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-slate-300">{event.audience || 0}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                    </TableCell>
+                    <TableCell>
+                      {event.venue}
+                    </TableCell>
+                    <TableCell>
+                      {formatDate(event.dateTime)}
+                    </TableCell>
+                    <TableCell>
+                      {formatTime(event.dateTime)}
+                    </TableCell>
+                    <TableCell>
+                      {event.audience || 0}
+                    </TableCell>
+                    <TableCell className="text-sm font-medium space-x-2">
                       <button className="text-blue-600 hover:text-blue-900">EDIT</button>
                       <DeleteEventButton eventSlug={event.slug} eventTitle={event.title} />
-                    </td>
+                    </TableCell>
                   </tr>
                 ))}
               </tbody>

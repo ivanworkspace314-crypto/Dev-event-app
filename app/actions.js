@@ -3,6 +3,36 @@
 import connectDB from '@/lib/db';
 import Event from '@/models/Event';
 import Booking from '@/models/Booking';
+import { v2 as cloudinary } from 'cloudinary';
+
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+/**
+ * Upload image file to Cloudinary and return secure URL
+ */
+export async function uploadEventImage(file) {
+  if (!file) {
+    throw new Error('No file provided');
+  }
+
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+  const base64File = `data:${file.type};base64,${buffer.toString('base64')}`;
+
+  const result = await cloudinary.uploader.upload(base64File, {
+    folder: 'dev-events',
+  });
+
+  return {
+    success: true,
+    secure_url: result.secure_url,
+    public_id: result.public_id,
+  };
+}
 
 /**
  * Retrieve all event entries from database
