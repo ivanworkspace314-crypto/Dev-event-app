@@ -6,7 +6,7 @@ export default async function HomePage() {
   const events = await getAllEvents();
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <div className="text-center py-16 px-4">
         <h1 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">

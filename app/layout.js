@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import LightRays from "@/app/home/LightRays";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,10 +22,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-900 text-slate-100`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-900 text-slate-100 relative`}
       >
-        <NavBar />
-        {children}
+         <div className="relative z-20">
+           <NavBar />
+         </div>
+
+        
+
+            {children}
       </body>
     </html>
   );
