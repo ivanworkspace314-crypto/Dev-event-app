@@ -4,6 +4,7 @@ import connectDB from '@/lib/db';
 import Event from '@/models/Event';
 import Booking from '@/models/Booking';
 import { v2 as cloudinary } from 'cloudinary';
+import { revalidatePath } from 'next/cache';
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -93,6 +94,11 @@ export async function bookEvent(eventSlug, email) {
     event.audience = (event.audience || 0) + 1;
     await event.save();
 
+    // Ensure event detail and listings show updated audience counts
+    revalidatePath('/home');
+    revalidatePath('/admin');
+    revalidatePath(`/details/${event.slug}`);
+
     return {
       success: true,
       message: 'Event booked successfully',
@@ -174,6 +180,11 @@ export async function createEvent(eventData) {
 
     await event.save();
 
+    // Refresh listings and detail pages to reflect the new event
+    revalidatePath('/home');
+    revalidatePath('/admin');
+    revalidatePath(`/details/${event.slug}`);
+
     return {
       success: true,
       message: 'Event created successfully',
@@ -212,6 +223,11 @@ export async function editEvent(eventSlug, eventData) {
 
     await event.save();
 
+    // Refresh listings and detail pages to reflect the edits
+    revalidatePath('/home');
+    revalidatePath('/admin');
+    revalidatePath(`/details/${event.slug}`);
+
     return {
       success: true,
       message: 'Event updated successfully',
@@ -241,6 +257,11 @@ export async function deleteEvent(eventSlug) {
 
     // Delete the event
     await Event.deleteOne({ _id: event._id });
+
+    // Refresh listings to remove the deleted event
+    revalidatePath('/home');
+    revalidatePath('/admin');
+    revalidatePath(`/details/${event.slug}`);
 
     return {
       success: true,

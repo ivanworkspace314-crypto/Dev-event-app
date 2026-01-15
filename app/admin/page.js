@@ -78,7 +78,7 @@ export default async function AdminDashboard() {
                       {event.audience || 0}
                     </TableCell>
                     <TableCell className="text-sm font-medium space-x-2">
-                      <button className="text-blue-600 hover:text-blue-900">EDIT</button>
+                      
                       <DeleteEventButton eventSlug={event.slug} eventTitle={event.title} />
                     </TableCell>
                   </tr>
