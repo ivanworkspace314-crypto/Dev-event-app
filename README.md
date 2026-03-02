@@ -1,5 +1,6 @@
 **Dev Event App**
 live version: <a href="https://dev-event-app-sigma.vercel.app/home"> HERE </a>
+<img width="768" height="737" alt="Screenshot 2026-03-02 at 10 24 20 PM" src="https://github.com/user-attachments/assets/57f5b994-8a21-4910-adb0-9ba4272ae1a3" />
 
 - Next.js 16 App Router project for browsing, creating, and managing developer events.
 - Uses MongoDB via Mongoose for persistence and Cloudinary for image uploads.
